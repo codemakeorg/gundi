@@ -1,0 +1,99 @@
+<div data-ng-controller="CategoryListController">
+    <div class="page-header">
+        <h1 class="page-title">Categories</h1>
+    </div>
+    <div class="page-content container-fluid">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#filter-form" aria-expanded="false">
+                        <span class="sr-only">Add Category</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a id="category_new" class="navbar-brand btn btn-primary" data-ui-sref="category_new" data-slug="category_new"
+                       title="add">
+                        <i class="site-menu-icon wb-plus" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="filter-form">
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control" data-ng-model="search.name__like">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-link" data-ng-click="filter()">
+                                <i class="icon wb-search"></i>
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-link" data-ng-click="reset()">
+                                <i class="icon wb-reload"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <table class="table table-hover" data-ng-init="load()">
+            <thead>
+            <tr>
+                <th class="text-center">
+                                <span class="sortable"
+                                      data-ng-click="sortType = 'id'; sortReverse = !sortReverse">
+                                        #
+                                        <i data-ng-show="sortType == 'id' && !sortReverse"
+                                           class="icon wb-sort-asc"></i>
+                                        <i data-ng-show="sortType == 'id' && sortReverse"
+                                           class="icon wb-sort-des"></i>
+                                    </span>
+                </th>
+                <th class="text-left">
+                                <span class="sortable"
+                                      data-ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                                        Category Name
+                                        <i data-ng-show="sortType == 'name' && !sortReverse"
+                                           class="icon wb-sort-asc"></i>
+                                        <i data-ng-show="sortType == 'name' && sortReverse"
+                                           class="icon wb-sort-des"></i>
+                                    </span>
+                </th>
+                <th class="text-left">
+                    Description
+                </th>
+                <th class="text-right">Action</th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll="load()" infinite-scroll-disabled="scrollDisable"
+                   infinite-scroll-distance='0'>
+            <tr data-ng-repeat="category in categories | orderBy:sortType:sortReverse"
+                id="category_{{category.id}}">
+                <td class="text-center">
+                    {{category.id}}
+                </td>
+                <td class="text-left">
+                    {{category.name}}({{category.news.length}})
+                </td>
+                <td class="text-left">
+                    <div data-ng-bind-html="renderHtml(category.description)"></div>
+                </td>
+                <td class="text-right">
+                    <button type="button" class="btn btn-primary btn-xs category-edit" data-ui-sref="category_edit({id:category.id})"
+                            data-slug="category_edit/{{category.id}}">
+                        <i class="site-menu-icon wb-edit" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" title="Delete"
+                            data-ng-click="delete(category.id)">
+                        <i class="site-menu-icon wb-close" aria-hidden="true"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,10 @@
+<div class="form-group" data-ng-class="{ 'has-error' : error.name }">
+    <label for="name">Category Name</label>
+    <input id="name" type="text" name="name" class="form-control" data-ng-model="category.name">
+    <span class="help-block" data-ng-repeat="errMessage in error.name" data-ng-show="error.name">{{errMessage}}</span>
+</div>
+<div class="form-group" data-ng-class="{ 'has-error' : error.description }">
+    <label>Description</label>
+    <div id="ckeditor" data-ckeditor="options" data-ng-model="category.description"></div>
+    <span class="help-block" data-ng-repeat="errMessage in error.description" data-ng-show="error.description">{{errMessage}}</span>
+</div>

@@ -1,0 +1,14 @@
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver
+        - \Helper\Acceptance
+        - Filesystem
+    config:
+        WebDriver:
+            url: 'http://localhost/gundi'
+            browser: 'firefox'
+            restart: true
+            capabilities:
+                browserName: 'firefox'
+

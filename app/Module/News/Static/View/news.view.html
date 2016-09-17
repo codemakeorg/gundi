@@ -1,0 +1,10 @@
+<div data-ng-controller="NewsViewController">
+    <div class="page-header">
+        <h1 class="page-title">{{news.title}}</h1>
+    </div>
+    <div class="page-content">
+        <div data-ng-bind-html="renderHtml(news.text)"></div>
+        <hr>
+        <p class="text-right">Category: {{news.category.name}}&nbsp;&nbsp;|&nbsp;&nbsp;Updated: {{news.updated_at | date}}</p>
+    </div>
+</div>

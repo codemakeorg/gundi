@@ -1,0 +1,18 @@
+<div data-ng-controller="NewsNewController">
+    <div class="page-header">
+        <h1 class="page-title">Add News</h1>
+    </div>
+    <div class="page-content">
+        <form data-ng-submit="add()">
+            <div data-ng-include="" data-src="MODULE_PATH+'News/Static/View/news.form.html'"></div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="wb-plus"></i> Add
+                </button>
+                <button type="button" class="btn btn-default" data-ui-sref="news" data-slug="news">
+                    <i class="wb-chevron-left"></i> Back
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

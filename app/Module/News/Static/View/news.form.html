@@ -1,0 +1,29 @@
+<div class="form-group" data-ng-class="{ 'has-error' : error.title }">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" class="form-control" data-ng-model="news.title">
+    <span class="help-block" data-ng-repeat="errMessage in error.title" data-ng-show="error.title">{{errMessage}}</span>
+</div>
+
+<div class="form-group" data-ng-class="{ 'has-error' : error.text }">
+    <label>Text</label>
+    <div id="ckeditor" data-ckeditor="options" data-ng-model="news.text"></div>
+    <span class="help-block" data-ng-repeat="errMessage in error.text" data-ng-show="error.text">{{errMessage}}</span>
+</div>
+
+<div class="form-group" data-ng-class="{ 'has-error' : error.published }">
+    <label><input id="published" type="checkbox" data-ng-model="news.published"> Publish</label>
+    <span class="help-block" data-ng-repeat="errMessage in error.published" data-ng-show="error.published">{{errMessage}}</span>
+</div>
+
+<div class="form-group" data-ng-class="{ 'has-error' : error.category }">
+    <label>Category</label>
+    <select class="form-control" data-ng-model="news.category_id" name="category">
+        <option data-ng-repeat="category in categories" data-ng-selected="category.id == news.category_id"
+                value="{{category.id}}">
+            {{category.name}}
+        </option>
+    </select>
+    <span class="help-block" data-ng-repeat="errMessage in error.category"
+          data-ng-show="error.category">{{errMessage}}</span>
+</div>
+

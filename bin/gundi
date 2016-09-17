@@ -1,0 +1,52 @@
+#!/usr/bin/env php
+<?php
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+use Core\Library\Gundi\Gundi;
+use Symfony\Component\Console\Application;
+
+/**
+ * gundi CLI
+ */
+
+define('GUNDI_DS', DIRECTORY_SEPARATOR);
+define('GUNDI_ROOT', __DIR__ . '/..' . GUNDI_DS);
+define('GUNDI_APP_DIR', GUNDI_ROOT . 'app' . GUNDI_DS);
+
+require_once  __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/Setting/Env.php';
+require_once __DIR__ . '/../app/Setting/Constant.php';
+
+
+/**
+ * Register services
+ */
+$oGundi = new Gundi();
+$oGundi->singleton([Core\Contract\Gundi\IBootstrap::class => 'Bootstrap'], Core\Library\Gundi\Bootstrap::class);
+
+$aAppSetting = include (GUNDI_DIR_SETTING . 'App.php');
+$oGundi['Bootstrap']->boot($aAppSetting);
+/**
+ * bind DB connection
+ */
+
+$oCapsule = new Capsule($oGundi);
+$oSettings = $oGundi['config'];
+$oCapsule->addConnection($oSettings['database.connections'][GUNDI_DB_DRiVER]);
+
+$oCapsule->setAsGlobal();
+$oCapsule->setEventDispatcher($oGundi['events']);
+$oCapsule->bootEloquent();
+
+$oGundi->instance(['\Illuminate\Database\Connection' => 'Connection'], $oCapsule);
+
+
+$app = new Application('Gundi', Gundi::VERSION);
+
+$app->add(new bin\Command\Migration\Make('make:migration'));
+$app->add(new bin\Command\Migration\Run('db:migrate'));
+$app->add(new bin\Command\Migration\Reset('db:reset'));
+$app->add(new bin\Command\Seed\Run('seed:run'));
+$app->add(new bin\Command\Seed\Make('make:seed'));
+
+$app->run();

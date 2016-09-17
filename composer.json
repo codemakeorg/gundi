@@ -1,0 +1,42 @@
+{
+    "name": "gundi-framework/framework",
+    "type": "project",
+    "description": "Framework for PHP 5.5+",
+    "authors": [
+        {
+            "name": "Mirzhan Asymbaev",
+            "email": "mirjan.asymbaev@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/container": "^5.1",
+        "illuminate/events": "^5.1",
+        "illuminate/pagination": "^5.1",
+        "illuminate/database": "*",
+        "watson/validating": "2.2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "codeception/codeception": "2.1.6",
+        "monolog/monolog": "^1.17",
+        "facebook/webdriver": "1.1.1",
+        "mikey179/vfsStream": "~1.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "app\\Core",
+            "Module\\": "app\\Module",
+            "bin\\": "bin"
+        }
+    },
+    "autoload-dev": {
+        "files": [
+            "tests/unit/Gundi_Framework_TestCase.php",
+            "tests/unit/Stubs.php"
+        ]
+    },
+    "bin":["bin/gundi"],
+    "minimum-stability": "dev"
+}
