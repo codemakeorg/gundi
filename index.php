@@ -1,5 +1,4 @@
 <?php
-
 if (version_compare(phpversion(), '5', '<') === true) {
     exit('Gundi 0.0.1 or higher requires PHP 5.5 or newer.');
 }
