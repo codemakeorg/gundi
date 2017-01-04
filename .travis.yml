@@ -18,7 +18,7 @@ install:
     - composer install
     
 before_script:
-    - mkdir ./var/log/
+    - mkdir var/log/
     - php bin/gundi db:migrate
     - php bin/gundi seed:run
 
