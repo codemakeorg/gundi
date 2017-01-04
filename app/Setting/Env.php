@@ -16,8 +16,8 @@ define('GUNDI_FOLDER', '/gundi/');
  */
 define('GUNDI_DB_DRiVER', 'mysql');
 define('GUNDI_DB_HOST', 'localhost');
-define('GUNDI_DB_USER', 'root');
-define('GUNDI_DB_PASS', '123');
+define('GUNDI_DB_USER', 'travis');
+define('GUNDI_DB_PASS', '');
 define('GUNDI_DB_NAME', 'gundi');
 define('GUNDI_DB_PORT', '27017');
 define('GUNDI_DB_CHARSET', 'utf8');
