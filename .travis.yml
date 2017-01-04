@@ -7,6 +7,10 @@ php:
     - 5.6
     - 7.0
 
+install:
+    - composer self-update
+    - composer install
+    
 before_script:
     - php bin/gundi db:migrate
     - php bin/gundi seed:run
