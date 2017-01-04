@@ -1,8 +1,9 @@
+
+<p>
+  <a href="https://travis-ci.org/codemakeorg/gundi"><img src="https://travis-ci.org/codemakeorg/gundi.svg" alt="Build Status"></a>
+</p>
 # gundi
 
-<p align="center">
-<a href="https://travis-ci.org/codemakeorg/gundi"><img src="https://travis-ci.org/codemakeorg/gundi.svg" alt="Build Status"></a>
-</p>
 PHP framework
 
 Server Requirements
